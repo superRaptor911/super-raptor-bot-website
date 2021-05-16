@@ -57,6 +57,7 @@ const Tweet = ({tweet}) => {
           variant="outlined" 
           color="secondary" 
           fullWidth
+          multiline
         />
       </Paper>
     </div>
