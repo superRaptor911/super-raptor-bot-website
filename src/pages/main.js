@@ -2,7 +2,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core'
 import TwitterLogin from "react-twitter-login";
-import {getCookie, setCookie} from '../components/utility';
+import {getCookie, setCookie} from '../components/Utility';
 import {useState} from 'react';
 import {useHistory} from 'react-router';
 
