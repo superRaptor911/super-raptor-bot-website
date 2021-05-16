@@ -65,7 +65,7 @@ function getThreadList() {
         return $return_val;
     }
 
-    $sql = "SELECT * FROM threads WHERE name = '$name'";
+    $sql = "SELECT name,threadID FROM threads WHERE name = '$name'";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;

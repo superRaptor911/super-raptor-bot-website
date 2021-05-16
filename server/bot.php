@@ -27,7 +27,7 @@ function getThreadID() {
         return $return_val;
     }
     // SQL DB
-    $sql = "SELECT * FROM users WHERE botName='$botName'";
+    $sql = "SELECT * FROM processState WHERE botName='$botName'";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;
@@ -90,7 +90,7 @@ case 'getThreadID':
     echo json_encode(getThreadID());
     break;
 
-case 'setThreadId':
+case 'setThreadID':
     echo json_encode(setThreadId());
     break;
 

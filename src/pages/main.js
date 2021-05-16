@@ -55,6 +55,11 @@ function Main() {
       <Paper className={classes.paper}>
         <Typography variant="h4" className={classes.title}>
           Say hi to Super Raptor Bot for twitter!
+          <br/>
+          Usage: Tag "@super_raptor911 save" to save a twitter thread.
+          <br/>
+          <br/>
+          Login with twitter to view/download your saved threads
         </Typography>
       </Paper>
 

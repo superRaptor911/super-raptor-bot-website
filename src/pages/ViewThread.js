@@ -2,7 +2,7 @@ import {useEffect , useState} from "react";
 import Paper from '@material-ui/core/Paper';
 import {useHistory, useParams} from "react-router";
 import useFetch from "../components/useFetch";
-import {getCookie, serverAddress} from '../components/Utility';
+import {getCookie, serverAddress, sortBy} from '../components/Utility';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
@@ -13,12 +13,14 @@ const useStyles = makeStyles({
     marginTop: 40,
     margin: 'auto',
     width: '90%',
+    maxWidth: 1000,
   },
   thread: {
     width: 1000,
   },
   paper: {
     padding: 20,
+    backgroundColor: '#f4f4f4'
   },
   title : {
     textAlign: 'center',
@@ -93,7 +95,9 @@ const ViewThread = () => {
         Thread
       </Typography>
 
-      {tweets}
+      <Paper className={classes.paper}>
+        {tweets}
+      </Paper>
       <Typography variant="button" color="error">
         {currentStatus}
       </Typography>
