@@ -2,19 +2,20 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/program/react/super-raptor-bot/src
+cd ~/program/server/twitterbot/server
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +13 App.js
-badd +7 index.js
-badd +3 components/utility.js
-badd +2 components/useFetch.js
-badd +38 pages/main.js
+badd +11 database.php
+badd +2 logger.php
+badd +6 Config.php
+badd +38 users.php
+badd +8 sql.sql
+badd +68 bot.php
 argglobal
 %argdel
-edit pages/main.js
+edit users.php
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -24,12 +25,12 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 48 - ((21 * winheight(0) + 21) / 43)
+let s:l = 120 - ((42 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-48
-normal! 017|
+120
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

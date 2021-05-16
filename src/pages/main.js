@@ -35,7 +35,7 @@ function Main() {
   const history = useHistory();
 
   const username = getCookie("username");
-  if (username != "") {
+  if (username !== "") {
     // Go to dash board
     history.push("/dashboard");
   }
