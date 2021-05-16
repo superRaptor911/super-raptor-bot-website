@@ -7,11 +7,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +3 App.js
-badd +11 index.js
+badd +7 App.js
+badd +7 index.js
 argglobal
 %argdel
-edit index.js
+edit App.js
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -21,11 +21,11 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 11 - ((10 * winheight(0) + 21) / 43)
+let s:l = 7 - ((6 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-11
+7
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

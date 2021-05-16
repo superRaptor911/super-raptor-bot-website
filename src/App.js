@@ -1,10 +1,18 @@
-import logo from './logo.svg';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'; 
+import Main from './pages/main';
 
 function App() {
+
   return (
-    <div className="App">
-      GGG wp
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <Main/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

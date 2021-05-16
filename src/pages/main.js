@@ -1,0 +1,56 @@
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core'
+import TwitterLogin from "react-twitter-login";
+
+const useStyles = makeStyles({
+  root: {
+    marginTop: 100,
+    margin: 'auto',
+    width: '90%',
+    maxWidth: 1000
+  },
+  paper: {
+    padding: 20,
+  },
+  title : {
+    textAlign: 'center',
+  },
+  login: {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 20,
+  }
+
+});
+
+
+function Main() {
+  const classes = useStyles();
+  const authHandler = (err, data) => {
+    console.log(err, data);
+  };
+
+  return (
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <Typography variant="h4" className={classes.title}>
+          Say hi to Super Raptor Bot for twitter!
+        </Typography>
+      </Paper>
+
+      <div >
+        <TwitterLogin
+          authCallback={authHandler}
+          consumerKey={"DfeZW6qR4AYtjKdOhlBLxoSzO"}
+          consumerSecret={"hk9CSrj5eNZdWk4EuE524h5UiRwfYCsONSlrRcTF0Ew2SNL7tr"}
+          className={classes.login}
+          buttonTheme={"dark"}
+        />   
+      </div>
+    </div>
+  );
+}
+
+export default Main;
