@@ -2,6 +2,9 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core'
 import TwitterLogin from "react-twitter-login";
+import {getCookie, setCookie} from '../components/utility';
+import {useState} from 'react';
+import {useHistory} from 'react-router';
 
 const useStyles = makeStyles({
   root: {
@@ -28,8 +31,23 @@ const useStyles = makeStyles({
 
 function Main() {
   const classes = useStyles();
+  const [userName, setUserName] = useState("");
+  const history = useHistory();
+
+  const username = getCookie("username");
+  if (username != "") {
+    // Go to dash board
+    history.push("/dashboard");
+  }
+
   const authHandler = (err, data) => {
     console.log(err, data);
+    if (err) {
+      // Error
+    } else {
+      setCookie("username", data.screen_name);
+      setUserName(data.screen_name);
+    }
   };
 
   return (
