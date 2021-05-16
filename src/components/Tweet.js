@@ -6,10 +6,10 @@ import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles({
   root: {
-    marginTop: 100,
     margin: 'auto',
     width: '90%',
-    maxWidth: 1000
+    maxWidth: 1000,
+    marginBottom: 5,
   },
   paper: {
     padding: 20,
@@ -30,25 +30,35 @@ const useStyles = makeStyles({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  avatarContainer: {
+    display: "flex",
+  },
+  tweetName: {
+    marginLeft: 5,
+  }
 });
 
-const Tweet = (tweet) => {
+const Tweet = ({tweet}) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Avatar
-          className={classes.avatar}
-          alt={tweet.userName}
-          src={tweet.image_https}
-        />
+        <div className={classes.avatarContainer}>
+          <Avatar
+            className={classes.avatar}
+            alt={tweet.userName}
+            src={tweet.image_https}
+          />
+          <Typography className={classes.tweetName}>
+            {tweet.username}
+          </Typography>
+        </div>
         <TextField className={classes.field}
           value={tweet.text}
           variant="outlined" 
           color="secondary" 
           fullWidth
-          disabled
         />
       </Paper>
     </div>
