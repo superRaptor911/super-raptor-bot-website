@@ -17,7 +17,15 @@ const useStyles = makeStyles({
     padding: 20,
   },
   title : {
-    textAlign: 'center',
+    textAlign: 'left',
+    fontSize: 32.0,
+    fontWeight: 400,
+    '@media screen and (max-width: 1100px)':{
+        fontSize: 27.0,
+    },
+    '@media screen and (max-width: 840px)':{
+        fontSize: 20.0
+    },
   },
   login: {
     display: 'block',
