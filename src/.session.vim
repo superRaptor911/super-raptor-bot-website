@@ -11,10 +11,10 @@ badd +21 App.js
 badd +7 index.js
 badd +2 components/useFetch.js
 badd +62 pages/main.js
-badd +51 pages/Dashboard.js
+badd +98 pages/Dashboard.js
 badd +60 components/Tweet.js
 badd +42 pages/ViewThread.js
-badd +25 components/Utility.js
+badd +3 components/Utility.js
 argglobal
 %argdel
 edit components/Utility.js
@@ -27,11 +27,11 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 1 - ((0 * winheight(0) + 21) / 43)
+let s:l = 3 - ((2 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
+3
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
