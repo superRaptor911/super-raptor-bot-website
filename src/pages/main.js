@@ -31,13 +31,13 @@ const useStyles = makeStyles({
   },
   title : {
     textAlign: 'left',
-    fontSize: 32,
+    fontSize: 32.0,
     fontWeight: 400,
     '@media screen and (max-width: 1100px)':{
-        fontSize: 27,
+        fontSize: 27.0,
     },
     '@media screen and (max-width: 840px)':{
-        fontSize: 20
+        fontSize: 20.0
     },
   },
   login: {
