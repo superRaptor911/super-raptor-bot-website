@@ -10,14 +10,6 @@ function getThreadID() {
         'threadID'  => "1"
     );
 
-    if (empty($_POST["botName"])) {
-        $return_val['result'] = false;
-        $return_val['err'] = "*name not set";
-        return $return_val;
-    }
-
-    $botName = $_POST["botName"];
-
     $conn = connectToDB();
     if (!$conn) {
         $logger = new Logger();
@@ -27,7 +19,7 @@ function getThreadID() {
         return $return_val;
     }
     // SQL DB
-    $sql = "SELECT * FROM processState WHERE botName='$botName'";
+    $sql = "SELECT threadID from threads ORDER BY threadID DESC LIMIT 1";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;
@@ -41,21 +33,13 @@ function getThreadID() {
     return $return_val;
 }
 
-
-
-function setThreadId() {
+function lockThread() {
     // Return value
     $return_val = array(
         'result' => true, // success
         'err'    => "",   // err msg
     );
 
-    if (empty($_POST["botName"])) {
-        $return_val['result'] = false;
-        $return_val['err'] = "*name not set";
-        return $return_val;
-    }
-    $botName = $_POST["botName"];
     $threadID = $_POST["threadID"];
 
     $conn = connectToDB();
@@ -64,9 +48,63 @@ function setThreadId() {
         $return_val['err'] = "*Connection to database failed.";
         return $return_val;
     }
+    $date = date_create();
+    $time = date_timestamp_get($date);
+    $sql = "INSERT INTO processPool(threadID, time) VALUES('$threadID', $time)";
+    $result = $conn->query($sql);
+    if (!$result) {
+        $return_val['result'] = false;
+        $return_val['err'] = "Error failed to set id, " . $conn->error;
+        return $return_val;
+    }
 
-    $sql = "INSERT INTO processState(botName, threadID) VALUES('$botName', '$threadID') 
-            ON DUPLICATE KEY UPDATE botName = '$botName', threadID = '$threadID'";
+    return $return_val;
+}
+
+function unlockThread() {
+    // Return value
+    $return_val = array(
+        'result' => true, // success
+        'err'    => "",   // err msg
+    );
+
+    $threadID = $_POST["threadID"];
+
+    $conn = connectToDB();
+    if (!$conn) {
+        $return_val['result'] = false;
+        $return_val['err'] = "*Connection to database failed.";
+        return $return_val;
+    }
+    $sql = "DELETE FROM processPool WHERE threadID = '$threadID'";
+    $result = $conn->query($sql);
+    if (!$result) {
+        $return_val['result'] = false;
+        $return_val['err'] = "Error failed to unloack thread, " . $conn->error;
+        return $return_val;
+    }
+
+    return $return_val;
+}
+
+function updateBot() {
+    // Return value
+    $return_val = array(
+        'result' => true, // success
+        'err'    => "",   // err msg
+    );
+
+    $botName = $_POST["botName"];
+
+    $conn = connectToDB();
+    if (!$conn) {
+        $return_val['result'] = false;
+        $return_val['err'] = "*Connection to database failed.";
+        return $return_val;
+    }
+    $date = date_create();
+    $time = date_timestamp_get($date);
+    $sql = "INSERT INTO processPool(botName, lastSeen) VALUES('$botName', $time)";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;
@@ -90,8 +128,16 @@ case 'getThreadID':
     echo json_encode(getThreadID());
     break;
 
-case 'setThreadID':
-    echo json_encode(setThreadId());
+case 'lockThread':
+    echo json_encode(lockThread());
+    break;
+
+case 'unlockThread':
+    echo json_encode(unlockThread());
+    break;
+
+case 'ping':
+    echo json_encode(updateBot());
     break;
 
 default:

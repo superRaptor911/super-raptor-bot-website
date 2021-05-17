@@ -9,7 +9,15 @@ CREATE TABLE threads(
     threadID VARCHAR(96) UNIQUE KEY,
     thread MEDIUMTEXT
 );
-CREATE TABLE processState(
+/* CREATE TABLE processState( */
+/*     botName VARCHAR(96) UNIQUE KEY, */
+/*     threadID VARCHAR(96) */
+/* ); */
+CREATE TABLE processPool(
+    threadID VARCHAR(96) UNIQUE KEY,
+    time INT(11)
+);
+CREATE TABLE bots(
     botName VARCHAR(96) UNIQUE KEY,
-    threadID VARCHAR(96)
+    lastSeen INT(11)
 );
