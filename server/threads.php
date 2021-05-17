@@ -101,7 +101,7 @@ function addThread() {
 
     $name = $_POST["name"];
     $threadID = $_POST["threadID"];
-    $thread = htmlspecialchars($_POST["thread"], ENT_QUOTES);
+    $thread = $_POST["thread"];
 
     $conn = connectToDB();
     if (!$conn) {
@@ -109,6 +109,8 @@ function addThread() {
         $return_val['err'] = "*Connection to database failed.";
         return $return_val;
     }
+
+    $thread = $conn->real_escape_string($thread);
 
     $sql = "INSERT INTO threads(name, threadID, thread) VALUES('$name', '$threadID', '$thread')";
     $result = $conn->query($sql);
