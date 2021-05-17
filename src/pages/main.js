@@ -13,8 +13,20 @@ const useStyles = makeStyles({
     width: '90%',
     maxWidth: 1000
   },
+  transparent:{
+    //border: '1px solid black',
+    paddingTop: 20,
+    height: '80vh',
+    width: '100%',
+    borderRadius: 20,
+    backgroundColor: 'rgba(197, 243, 241, 0.12)'
+  },
+
   paper: {
+    margin: 20,
     padding: 20,
+    backgroundColor: '#eff7f6',
+    borderRadius: 20,
   },
   title : {
     textAlign: 'left',
@@ -32,12 +44,14 @@ const useStyles = makeStyles({
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: 20,
+    
   }
 
 });
 
 
 function Main() {
+
   const classes = useStyles();
   const [userName, setUserName] = useState("");
   const history = useHistory();
@@ -45,7 +59,7 @@ function Main() {
   const username = getCookie("username");
   if (username !== "") {
     // Go to dash board
-    history.push("/dashboard");
+    history.push("/");
   }
 
   const authHandler = (err, data) => {
@@ -56,15 +70,20 @@ function Main() {
       setCookie("username", data.screen_name);
       setUserName(data.screen_name);
     }
+
+  
   };
 
   return (
+    
+    
     <div className={classes.root}>
+      <div className={classes.transparent}>
       <Paper className={classes.paper}>
-        <Typography variant="h4" className={classes.title}>
-          Say hi to Super Raptor Bot for twitter!
-          <br/>
-          Usage: Tag "@super_raptor911 save" to save a twitter thread.
+        <Typography  className={classes.title}>
+          Say hi 👋  to Thread Ripper botnet for twitter!
+          <br/><br/>
+          Don't know how to use 🤔? Just tag "@super_raptor911 save" to save a twitter thread 🐦.
           <br/>
           <br/>
           Login with twitter to view/download your saved threads
@@ -80,7 +99,10 @@ function Main() {
           buttonTheme={"dark"}
         />   
       </div>
+      </div>
     </div>
+    
+    
   );
 }
 
