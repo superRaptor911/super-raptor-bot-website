@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   root: {
     marginTop: 40,
     margin: 'auto',
-    width: '90%',
+    width: '95%',
     maxWidth: 1000,
   },
   thread: {
@@ -20,19 +20,27 @@ const useStyles = makeStyles({
   },
   paper: {
     padding: 20,
-    backgroundColor: '#f4f4f4'
+    backgroundColor: '#f4f4f4',
+    overflowX: 'auto',
+    display: 'flex',
+    flex: 1,
   },
   title : {
     textAlign: 'center',
     marginBottom: 20,
   },
-  threadItem: {
-    backgroundColor: '#549aea',
+  threadContainer: {
     display: 'flex',
-    justifyItems: 'center',
-    justifyContent: 'space-around',
-    padding: 8
+    flexDirection: 'column',
+    flexGrow: 1,
   },
+  // threadItem: {
+  //   backgroundColor: '#549aea',
+  //   display: 'flex',
+  //   justifyItems: 'center',
+  //   justifyContent: 'space-around',
+  //   padding: 8
+  // },
   subTweet: {
     marginLeft: 60,
   }

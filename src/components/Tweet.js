@@ -8,9 +8,14 @@ const useStyles = makeStyles({
   root: {
     margin: 'auto',
     marginBottom: 5,
+    minWidth: 300,
+    // flexGrow: 1,
+    width: '100%'
   },
   paper: {
     padding: 20,
+    overflow: 'auto',
+    boxShadow: 'none',
   },
   title : {
     textAlign: 'center',
@@ -33,6 +38,9 @@ const useStyles = makeStyles({
   },
   tweetName: {
     marginLeft: 5,
+  },
+  tweetText: {
+    fontSize: 20,
   }
 });
 
@@ -53,7 +61,7 @@ const Tweet = ({tweet}) => {
           </Typography>
         </div>
         <div className={classes.field}>
-          <Typography>
+          <Typography className={classes.tweetText}>
             {tweet.text}
           </Typography>
         </div>
