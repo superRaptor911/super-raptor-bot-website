@@ -10,16 +10,16 @@ set shortmess=aoO
 badd +11 App.js
 badd +7 index.js
 badd +2 components/useFetch.js
-badd +62 pages/main.js
-badd +29 pages/Dashboard.js
-badd +52 components/Tweet.js
-badd +42 pages/ViewThread.js
-badd +53 components/Utility.js
-badd +35 components/Header.js
-badd +32 components/SideDrawer.js
+badd +61 pages/main.js
+badd +65 pages/Dashboard.js
+badd +12 components/Tweet.js
+badd +8 pages/ViewThread.js
+badd +3 components/Utility.js
+badd +31 components/Header.js
+badd +28 components/SideDrawer.js
 argglobal
 %argdel
-edit components/Utility.js
+edit pages/ViewThread.js
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -28,13 +28,28 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
+exe '2resize ' . ((&lines * 1 + 22) / 45)
+exe 'vert 2resize ' . ((&columns * 1 + 87) / 174)
+exe '3resize ' . ((&lines * 1 + 22) / 45)
+exe 'vert 3resize ' . ((&columns * 70 + 87) / 174)
 argglobal
-let s:l = 4 - ((3 * winheight(0) + 21) / 43)
+let s:l = 8 - ((7 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
+8
 normal! 0
+wincmd w
+argglobal
+enew
+wincmd w
+argglobal
+enew
+wincmd w
+exe '2resize ' . ((&lines * 1 + 22) / 45)
+exe 'vert 2resize ' . ((&columns * 1 + 87) / 174)
+exe '3resize ' . ((&lines * 1 + 22) / 45)
+exe 'vert 3resize ' . ((&columns * 70 + 87) / 174)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

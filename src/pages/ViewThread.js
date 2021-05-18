@@ -1,11 +1,12 @@
-import {useEffect , useState} from "react";
+import {useEffect , useRef, useState} from "react";
 import Paper from '@material-ui/core/Paper';
 import {useHistory, useParams} from "react-router";
 import useFetch from "../components/useFetch";
 import {getCookie, serverAddress, sortBy} from '../components/Utility';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
+import Pdf from "react-to-pdf";
 import Tweet from "../components/Tweet";
 
 const useStyles = makeStyles({
@@ -22,8 +23,10 @@ const useStyles = makeStyles({
     padding: 20,
     backgroundColor: '#f4f4f4',
     overflowX: 'auto',
+
     display: 'flex',
     flex: 1,
+    boxShadow: 'none',
   },
   title : {
     textAlign: 'center',
@@ -34,13 +37,6 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     flexGrow: 1,
   },
-  // threadItem: {
-  //   backgroundColor: '#549aea',
-  //   display: 'flex',
-  //   justifyItems: 'center',
-  //   justifyContent: 'space-around',
-  //   padding: 8
-  // },
   subTweet: {
     marginLeft: 60,
   }
@@ -48,7 +44,7 @@ const useStyles = makeStyles({
 
 function genTweets(tweet, classes) {
   return (
-    <div>
+    <div className={classes.threadContainer}>
       <Tweet tweet={tweet.tweet}/>
       <div className={classes.subTweet}>
         {tweet.replies.map((t) => (
@@ -75,9 +71,11 @@ const ViewThread = () => {
     threadID: threadid
   }});
   const [currentStatus, setCurrentStatus] = useState("");
+  const [dummy, setDummy] = useState();
   const serverResponse = useFetch(target);
 
   const history = useHistory();
+  const ref = useRef();
 
   const [tweets, setTweets] = useState();
 
@@ -97,13 +95,30 @@ const ViewThread = () => {
       }
     }
   }, [serverResponse.error, serverResponse.data])
+
+
+
   return (
     <div className={classes.root}>
       <Typography variant="h2" className={classes.title}>
         Thread
       </Typography>
 
-      <Paper className={classes.paper}>
+      {ref.current && (console.log([ref.current]) || true) && (
+        <Pdf targetRef={ref} filename="code-example.pdf" options={{
+          orientation: '1', 
+          unit: 'pt', 
+          format: [ref.current.offsetWidth, ref.current.offsetHeight]
+        }
+          }>
+          {({ toPdf }) => {
+            setDummy(1);
+            return (<button onClick={toPdf}>Generate Pdf</button>)
+          }}
+        </Pdf>
+      )}
+
+      <Paper className={classes.paper} ref={ref}>
         {tweets}
       </Paper>
       <Typography variant="button" color="error">
