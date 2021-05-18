@@ -4,10 +4,11 @@ import {useHistory, useParams} from "react-router";
 import useFetch from "../components/useFetch";
 import {getCookie, serverAddress, sortBy} from '../components/Utility';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
 // import Button from '@material-ui/core/Button'
-import Pdf from "react-to-pdf";
 import Tweet from "../components/Tweet";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 const useStyles = makeStyles({
   root: {
@@ -96,7 +97,22 @@ const ViewThread = () => {
     }
   }, [serverResponse.error, serverResponse.data])
 
+  const convertToPdf = () => {
+  
+     html2canvas(ref.current, {letterRendering: 1, useCORS : true, scrollY: -window.scrollY,
+     }).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+         // window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+        const pdf = new jsPDF({ orientation: 'landscape'});
 
+        const imgProps= pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth,0.5 * pdfHeight);
+        // pdf.addImage(imgData, 'PNG', 0, 0);
+        pdf.save("download.pdf"); 
+    });
+  }
 
   return (
     <div className={classes.root}>
@@ -104,19 +120,9 @@ const ViewThread = () => {
         Thread
       </Typography>
 
-      {ref.current && (console.log([ref.current]) || true) && (
-        <Pdf targetRef={ref} filename="code-example.pdf" options={{
-          orientation: '1', 
-          unit: 'pt', 
-          format: [ref.current.offsetWidth, ref.current.offsetHeight]
-        }
-          }>
-          {({ toPdf }) => {
-            setDummy(1);
-            return (<button onClick={toPdf}>Generate Pdf</button>)
-          }}
-        </Pdf>
-      )}
+      <Button onClick={convertToPdf}>
+        save pdf
+      </Button>
 
       <Paper className={classes.paper} ref={ref}>
         {tweets}

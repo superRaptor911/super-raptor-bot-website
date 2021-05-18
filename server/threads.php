@@ -65,7 +65,7 @@ function getThreadList() {
         return $return_val;
     }
 
-    $sql = "SELECT name,threadID FROM threads WHERE name = '$name'";
+    $sql = "SELECT name,threadID,title FROM threads WHERE name = '$name'";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;
@@ -98,10 +98,17 @@ function addThread() {
         $return_val['err'] = "*name not set";
         return $return_val;
     }
+    if (empty($_POST["title"])) {
+        $return_val['result'] = false;
+        $return_val['err'] = "*name not set";
+        return $return_val;
+    }
+
 
     $name = $_POST["name"];
     $threadID = $_POST["threadID"];
     $thread = $_POST["thread"];
+    $title = $_POST["title"];
 
     $conn = connectToDB();
     if (!$conn) {
@@ -112,7 +119,7 @@ function addThread() {
 
     $thread = $conn->real_escape_string($thread);
 
-    $sql = "INSERT INTO threads(name, threadID, thread) VALUES('$name', '$threadID', '$thread')";
+    $sql = "INSERT INTO threads(name, threadID, thread, title) VALUES('$name', '$threadID', '$thread', '$title')";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;
