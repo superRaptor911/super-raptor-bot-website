@@ -52,13 +52,11 @@ const Tweet = ({tweet}) => {
             {tweet.username}
           </Typography>
         </div>
-        <TextField className={classes.field}
-          value={tweet.text}
-          variant="outlined" 
-          color="secondary" 
-          fullWidth
-          multiline
-        />
+        <div className={classes.field}>
+          <Typography>
+            {tweet.text}
+          </Typography>
+        </div>
       </Paper>
     </div>
   );

@@ -7,14 +7,16 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +21 App.js
+badd +11 App.js
 badd +7 index.js
 badd +2 components/useFetch.js
 badd +62 pages/main.js
-badd +98 pages/Dashboard.js
-badd +60 components/Tweet.js
+badd +29 pages/Dashboard.js
+badd +52 components/Tweet.js
 badd +42 pages/ViewThread.js
-badd +3 components/Utility.js
+badd +53 components/Utility.js
+badd +35 components/Header.js
+badd +32 components/SideDrawer.js
 argglobal
 %argdel
 edit components/Utility.js
@@ -27,11 +29,11 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 3 - ((2 * winheight(0) + 21) / 43)
+let s:l = 4 - ((3 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-3
+4
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

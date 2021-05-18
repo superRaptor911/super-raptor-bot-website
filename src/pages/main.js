@@ -59,7 +59,7 @@ function Main() {
   const username = getCookie("username");
   if (username !== "") {
     // Go to dash board
-    history.push("/");
+    history.push("/dashboard");
   }
 
   const authHandler = (err, data) => {

@@ -2,9 +2,9 @@ import {useEffect , useState} from "react";
 import Paper from '@material-ui/core/Paper';
 import {useHistory} from "react-router";
 import useFetch from "../components/useFetch";
-import {getCookie, serverAddress} from '../components/Utility';
+import {getCookie, serverAddress, sortBy} from '../components/Utility';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core'
+import { Divider, makeStyles } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles({
@@ -25,17 +25,26 @@ const useStyles = makeStyles({
     backgroundColor: '#549aea',
     display: 'flex',
     justifyItems: 'center',
-    justifyContent: 'space-around',
-    padding: 8
+    padding: 8,
+    marginBottom: 4,
+  },
+  threadListContainer: {
+    marginTop: 20,
+  },
+  threadItemTitle: {
+    marginLeft: 5,
+    marginRight: 5,
+    width: '60%'
   }
 });
 
 function genThreadList(threads, classes, history) {
+  threads.sort(sortBy("threadID", "desc"))
   return (
     <div>
       {threads.map((thread) => (
         <Paper key={thread.threadID} className={classes.threadItem}>
-          <Typography> {thread.threadID}</Typography>
+          <Typography className={classes.threadItemTitle}> {thread.title}</Typography>
           <Button
             type="submit" 
             color="primary" 
@@ -86,7 +95,10 @@ const Dashboard = () => {
         Dashboard
       </Typography>
 
-      {threadList}
+      <Divider/>
+      <div className={classes.threadListContainer}>
+        {threadList}
+      </div>
 
       <Typography variant="button" color="error">
         {currentStatus}

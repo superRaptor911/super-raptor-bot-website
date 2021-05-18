@@ -1,4 +1,5 @@
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'; 
+import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import Main from './pages/main';
 import ViewThread from './pages/ViewThread';
@@ -7,6 +8,7 @@ function App() {
 
   return (
     <Router>
+      <Header/>
       <div>
         <Switch>
           <Route exact path="/">
