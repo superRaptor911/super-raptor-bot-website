@@ -8,16 +8,30 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {useState} from 'react';
 import {useHistory, useLocation} from 'react-router';
+import {getCookie} from './Utility';
+import Avatar from '@material-ui/core/Avatar';
+import {Typography} from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   list: {
     width: 300,
     textAlign: 'center'
   },
   active: {
     background: '#f4f4f4'
-  }
-});
+  },
+  info: {
+    marginTop: 5,
+    marginBottom: 5,
+    display: 'flex',
+    alignItems: 'center'
+  },
+  medium: {
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+  },
+
+}));
 
 const SideDrawer = () => {
   const classes = useStyles();
@@ -28,19 +42,26 @@ const SideDrawer = () => {
   const primaryList = [
     {
       name: "HOME",
-      path: "/"
+      path: "/home"
     },
     {
-      name: "USERS",
-      path: "/listusers"
+      name: "COMMANDS",
+      path: "/commands"
     },
     {
-      name: "HISTORY",
-      path: "/transactionhistory"
+      name: "GUIDE",
+      path: "/guide"
+    },
+  ];
+
+  const personal = [
+    {
+      name: "DASHBOARD",
+      path: "/dashboard"
     },
     {
-      name: "RAPTOR INC",
-      path: "/company"
+      name: "SETTINGS",
+      path: "/settings"
     },
   ];
 
@@ -60,7 +81,28 @@ const SideDrawer = () => {
       <MenuIcon />
       <Drawer open={showSideDrawer}>
         <div role="presentation">
+          <div className={classes.info}>
+            <Avatar 
+              className={classes.medium}
+              alt="Twitter"
+              src={"https://cdn0.iconfinder.com/data/icons/user-44/512/Bot-512.png"}
+            />
+            <Typography>
+              ThreadRipper v1.0
+            </Typography>
+          </div>
+
           <List className={classes.list}>
+            {getCookie("username") !== "" && (
+              <div>
+                {personal.map(item => (
+                  <ListItem button onClick={() => history.push(item.path)} key={item.name} className={location.pathname === item.path ? classes.active : null}>
+                    <ListItemText primary={item.name}/>
+                  </ListItem>
+                ))}
+                <Divider/>
+              </div>
+            )}
             {primaryList.map(item => (
               <ListItem button onClick={() => history.push(item.path)} key={item.name} className={location.pathname === item.path ? classes.active : null}>
                 <ListItemText primary={item.name}/>

@@ -6,8 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-import Container from '@material-ui/core/Container';
 import SideDrawer from "./SideDrawer";
+import {getCookie, setCookie} from "./Utility";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,15 +21,20 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+    // flexGrow: 1,
+  },
+  username: {
+    display: "block",
+    marginRight: 'auto',
+    marginLeft: 'auto',
   },
   medium: {
     width: theme.spacing(6),
     height: theme.spacing(6),
   },
   container: {
-    display: 'inline-block',
-    textAlign: 'right'
+    display: 'flex',
+    // textAlign: 'right'
   },
   emptyDiv: {
     margin: 100,
@@ -40,6 +45,12 @@ const Header = () => {
   const classes = useStyles();
   const history = useHistory();
 
+  const handleLogout = () => {
+    setCookie("username", "");
+    window.location.href ="/";
+  }
+
+
   return (
     <div>
       <AppBar className={classes.root}>
@@ -49,16 +60,14 @@ const Header = () => {
             <Avatar 
               className={classes.medium}
               alt="Twitter"
-              src={"https://clipground.com/images/logo-twitter-blanc-png-3.jpg"}
+              src={"https://cdn0.iconfinder.com/data/icons/user-44/512/Bot-512.png"}
             />
           </Button>
           <Typography variant="h6" className={classes.title}>
-           ThreadRipper
+            ThreadRipper
           </Typography>
-          <Container className={classes.container}>
-            <Button color="inherit" onClick={() => history.push('/')}>HOME</Button>
-            <Button color="inherit" onClick={() => history.push('/adminmenu')}>MENU</Button>
-          </Container>
+          <Button color="inherit" className={classes.username}>{getCookie("username")}</Button>
+          {getCookie("username") !== "" && (<Button color="inherit" onClick={handleLogout}>Logout</Button>)}
         </Toolbar>
       </AppBar>
       <div className={classes.emptyDiv}></div>

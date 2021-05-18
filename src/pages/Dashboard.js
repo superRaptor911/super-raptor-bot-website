@@ -72,6 +72,10 @@ const Dashboard = () => {
 
   const [threadList, setThreadList] = useState();
 
+  if (getCookie("username" === "")) {
+    history.push("/");
+  }
+
   // Check server response
   useEffect(() => {
     if (serverResponse.error.error) {
@@ -81,6 +85,7 @@ const Dashboard = () => {
     else if (serverResponse.data) {
       if (!serverResponse.data.result) {
         setCurrentStatus(serverResponse.data.err);
+        history.push("/");
       }
       else {
         setCurrentStatus("");
