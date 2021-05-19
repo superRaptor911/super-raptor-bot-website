@@ -108,7 +108,6 @@ const ViewThread = () => {
       const imgData = canvas.toDataURL('image/png');
 
       const pdf = new jsPDF('p', 'mm');
-
       const imgProps = pdf.getImageProperties(imgData);
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;

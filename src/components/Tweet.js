@@ -10,7 +10,8 @@ const useStyles = makeStyles({
     marginBottom: 5,
     minWidth: 300,
     // flexGrow: 1,
-    width: '100%'
+    width: '100%',
+    maxWidth: 700,
   },
   paper: {
     padding: 20,
@@ -41,6 +42,14 @@ const useStyles = makeStyles({
   },
   tweetText: {
     fontSize: 20,
+  },
+  tweetMediaContainer: {
+    marginTop: 20,
+  },
+  tweetMedia: {
+    borderRadius: 10,
+    objectFit: 'contain',
+    width: '100%',
   }
 });
 
@@ -64,6 +73,16 @@ const Tweet = ({tweet}) => {
           <Typography className={classes.tweetText}>
             {tweet.text}
           </Typography>
+
+          
+          {tweet.media !== "" && (
+            <div className={classes.tweetMediaContainer}>
+              <a href={tweet.media}>
+                <img alt={"media"} src={tweet.media} className={classes.tweetMedia}/>
+              </a>
+            </div>
+          )}
+
         </div>
       </Paper>
     </div>
