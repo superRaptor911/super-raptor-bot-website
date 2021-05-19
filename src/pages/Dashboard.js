@@ -6,13 +6,15 @@ import {getCookie, serverAddress, sortBy} from '../components/Utility';
 import Typography from '@material-ui/core/Typography';
 import { Divider, makeStyles } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import { ArrowLeft } from "@material-ui/icons";
 
 const useStyles = makeStyles({
   root: {
     marginTop: 40,
     margin: 'auto',
-    width: '90%',
-    maxWidth: 1000
+    width: '100%',
+    maxWidth: 1000,
+    alignItems: 'center'
   },
   paper: {
     padding: 20,
@@ -20,13 +22,27 @@ const useStyles = makeStyles({
   title : {
     textAlign: 'center',
     marginBottom: 20,
+    fontSize: 40,
+    fontWeight: 'bolder'
   },
   threadItem: {
-    backgroundColor: '#549aea',
+    //backgroundColor: '#549aea',
+    backgroundImage: 'radial-gradient( circle 993px at 0.5% 50.5%,  rgba(137,171,245,0.37) 0%, rgba(245,247,252,1) 100.2% )',
     display: 'flex',
-    justifyItems: 'center',
+    //justifyItems: 'center',
     padding: 8,
-    marginBottom: 4,
+    height: 100,
+    width: 'auto',
+    margin: 15,
+    borderRadius: 25,
+  },
+  viewButton: {
+    height: 50,
+    borderRadius: 50,
+    fontSize: 20,
+    width: 150,
+    margin: 30,
+    backgroundImage: 'radial-gradient( circle 919px at 1.7% 6.1%,  rgba(41,58,76,1) 0%, rgba(40,171,226,1) 100.2% )',
   },
   threadListContainer: {
     marginTop: 20,
@@ -34,7 +50,9 @@ const useStyles = makeStyles({
   threadItemTitle: {
     marginLeft: 5,
     marginRight: 5,
-    width: '60%'
+    width: '80%',
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 });
 
@@ -46,6 +64,7 @@ function genThreadList(threads, classes, history) {
         <Paper key={thread.threadID} className={classes.threadItem}>
           <Typography className={classes.threadItemTitle}> {thread.title}</Typography>
           <Button
+            className= {classes.viewButton}
             type="submit" 
             color="primary" 
             variant="contained"
@@ -96,8 +115,8 @@ const Dashboard = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h2" className={classes.title}>
-        Dashboard
+      <Typography  className={classes.title}>
+        DASHBOARD
       </Typography>
 
       <Divider/>

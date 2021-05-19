@@ -83,7 +83,7 @@ function Main() {
         <Typography  className={classes.title}>
           Say hi 👋  to Thread Ripper botnet for twitter!
           <br/><br/>
-          Don't know how to use 🤔? Just tag "@super_raptor911 save" to save a twitter thread 🐦.
+          Don't know how to use 🤔? Just tag "@threadRipperBot save" to save a twitter thread 🐦.
           <br/>
           <br/>
           Login with twitter to view/download your saved threads

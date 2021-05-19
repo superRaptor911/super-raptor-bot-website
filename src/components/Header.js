@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     position: 'fixed',
     marginBottom: 0,
+    background: 'radial-gradient( circle farthest-corner at 22.4% 21.7%,  rgba(4,189,228,1) 0%, rgba(4,183,185,1) 100.2% )'
   },
   menuButton: {
     marginRight: theme.spacing(2),
