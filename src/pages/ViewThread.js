@@ -97,20 +97,38 @@ const ViewThread = () => {
     }
   }, [serverResponse.error, serverResponse.data])
 
+  // Function to save pdf
   const convertToPdf = () => {
-  
-     html2canvas(ref.current, {letterRendering: 1, useCORS : true, scrollY: -window.scrollY,
-     }).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-         // window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
-        const pdf = new jsPDF({ orientation: 'landscape'});
+    // For mobile
+    ref.current.style.width = ref.current.scrollWidth + "px";
+    html2canvas(ref.current, {letterRendering: 1, useCORS : true, scrollY: -window.scrollY, scrollX: -window.scrollX ,scale: 2, 
+      width: ref.current.scrollWidth
+    }).then(canvas => {
+      // Convert HTML to png
+      const imgData = canvas.toDataURL('image/png');
 
-        const imgProps= pdf.getImageProperties(imgData);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth,0.5 * pdfHeight);
-        // pdf.addImage(imgData, 'PNG', 0, 0);
-        pdf.save("download.pdf"); 
+      const pdf = new jsPDF('p', 'mm');
+
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      console.log(`image width, height = (${imgProps.width}, ${imgProps.height})`);
+
+      let posY = 0;
+      let heightLeft = pdfHeight
+      pdf.addImage(imgData, 'PNG', 0, posY, pdfWidth, pdfHeight, undefined,'FAST');
+      heightLeft -= pdf.internal.pageSize.getHeight();
+
+      while (heightLeft >= 0) {
+        posY = heightLeft - pdfHeight;
+
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, posY, pdfWidth, pdfHeight, undefined,'FAST');
+        heightLeft -= pdf.internal.pageSize.getHeight();
+      }
+
+      // pdf.addImage(imgData, 'PNG', 0, 0);
+      pdf.save("download.pdf"); 
     });
   }
 
@@ -130,6 +148,9 @@ const ViewThread = () => {
       <Typography variant="button" color="error">
         {currentStatus}
       </Typography>
+
+      <br/>
+      <br/>
     </div>
   );
 }
