@@ -22,25 +22,61 @@ const useStyles = makeStyles({
   },
   paper: {
     padding: 20,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: 'rgba(197, 243, 241, 0.12)',
     overflowX: 'auto',
-
+    borderRadius: 20,
     display: 'flex',
     flex: 1,
     boxShadow: 'none',
+    '@media screen and (max-width: 650px)':{
+      padding: 5,
+      width: 'auto'
+    },
   },
   title : {
     textAlign: 'center',
     marginBottom: 20,
+    fontSize: 40,
+    fontWeight: 'bolder',
+    '@media screen and (max-width: 1000px)':{
+        fontSize: 30,
+    },
+    '@media screen and (max-width: 750px)':{
+      fontSize: 25,
+      marginBottom: 5,
+  },
   },
   threadContainer: {
     display: 'flex',
     flexDirection: 'column',
     flexGrow: 1,
+    
   },
   subTweet: {
-    marginLeft: 60,
-  }
+    marginLeft: 30,
+    '@media screen and (max-width: 650px)':{
+      marginLeft: 20,
+      marginRight: 0,
+    },
+  },
+  btn:{
+    textAlign: 'center',
+  },
+  pdfButton: {
+    margin: 10,
+    padding: 5,
+    minWidth: 200,
+    widht: 'auto',
+    height: 50,
+    color: '#f1faee',
+    fontSize: 17,
+    borderRadius: 50,
+    backgroundColor: '#001219',
+    '&:hover':{
+      backgroundColor: '#f1faee',
+      color: '#001219',
+    },
+  },
 });
 
 function genTweets(tweet, classes) {
@@ -133,13 +169,15 @@ const ViewThread = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h2" className={classes.title}>
-        Thread
+      <Typography  className={classes.title}>
+        THREAD
       </Typography>
 
-      <Button onClick={convertToPdf}>
-        save pdf
+      <div className = {classes.btn}>
+      <Button onClick={convertToPdf} className= {classes.pdfButton}>
+        save as pdf
       </Button>
+      </div>
 
       <Paper className={classes.paper} ref={ref}>
         {tweets}

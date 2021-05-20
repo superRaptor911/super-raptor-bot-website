@@ -7,16 +7,26 @@ import TextField from '@material-ui/core/TextField'
 const useStyles = makeStyles({
   root: {
     margin: 'auto',
-    marginBottom: 5,
+    marginBottom: 10,
     minWidth: 300,
     // flexGrow: 1,
     width: '100%',
-    maxWidth: 700,
+    maxWidth: 1000,
+    '@media screen and (max-width: 1000px)':{
+      
+    },
+  '@media screen and (max-width: 420px)':{
+    minWidth: 250,
+    width: '100%',
+    maxWidth: 380,
+    
+    },
   },
   paper: {
     padding: 20,
     overflow: 'auto',
     boxShadow: 'none',
+    borderRadius: 30
   },
   title : {
     textAlign: 'center',
@@ -55,6 +65,7 @@ const useStyles = makeStyles({
 
 const Tweet = ({tweet}) => {
   const classes = useStyles();
+  
 
   return (
     <div className={classes.root}>

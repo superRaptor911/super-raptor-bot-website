@@ -35,6 +35,15 @@ const useStyles = makeStyles({
     width: 'auto',
     margin: 15,
     borderRadius: 25,
+    '@media screen and (max-width: 1024px)':{
+      margin: 10,
+      padding: 6, 
+    },
+    '@media screen and (max-width: 750px)':{
+      margin: 5,
+      marginBottom: 10,
+      padding: 4, 
+    },
   },
   viewButton: {
     height: 50,
@@ -42,10 +51,34 @@ const useStyles = makeStyles({
     fontSize: 20,
     width: 150,
     margin: 30,
-    backgroundImage: 'radial-gradient( circle 919px at 1.7% 6.1%,  rgba(41,58,76,1) 0%, rgba(40,171,226,1) 100.2% )',
+    //backgroundImage: 'radial-gradient( circle 919px at 1.7% 6.1%,  rgba(41,58,76,1) 0%, rgba(40,171,226,1) 100.2% )',
+    backgroundColor: '#001219',
+    '&:hover':{
+      backgroundColor: '#1da1f2',
+      color: '#001219',
+    },
+    '@media screen and (max-width: 1024px)':{
+      fontSize: 17,
+    },
+    '@media screen and (max-width: 750px)':{
+      fontSize: 15, 
+    },
   },
+  
   threadListContainer: {
     marginTop: 20,
+  },
+  transparent:{
+    //border: '1px solid black',
+    padding: 20,
+    margin: 10,
+    height: 'auto',
+    width: 'auto',
+    borderRadius: 20,
+    backgroundColor: 'rgba(197, 243, 241, 0.12)',
+    '@media screen and (max-width: 1024px)':{
+      padding: 6, 
+    },
   },
   threadItemTitle: {
     marginLeft: 5,
@@ -120,8 +153,10 @@ const Dashboard = () => {
       </Typography>
 
       <Divider/>
+      <div className={classes.transparent}>
       <div className={classes.threadListContainer}>
         {threadList}
+      </div>
       </div>
 
       <Typography variant="button" color="error">
