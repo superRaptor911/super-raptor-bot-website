@@ -12,14 +12,14 @@ badd +7 index.js
 badd +2 components/useFetch.js
 badd +61 pages/main.js
 badd +65 pages/Dashboard.js
-badd +12 components/Tweet.js
-badd +153 pages/ViewThread.js
+badd +88 components/Tweet.js
+badd +51 pages/ViewThread.js
 badd +3 components/Utility.js
 badd +31 components/Header.js
 badd +28 components/SideDrawer.js
 argglobal
 %argdel
-edit pages/ViewThread.js
+edit components/Tweet.js
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -29,12 +29,12 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 109 - ((16 * winheight(0) + 21) / 43)
+let s:l = 88 - ((36 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-109
-normal! 0
+88
+normal! 036|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

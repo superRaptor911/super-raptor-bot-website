@@ -75,13 +75,19 @@ const Tweet = ({tweet}) => {
           </Typography>
 
           
-          {tweet.media !== "" && (
-            <div className={classes.tweetMediaContainer}>
-              <a href={tweet.media}>
-                <img alt={"media"} src={tweet.media} className={classes.tweetMedia}/>
+          {tweet.images.map((image, id) => (
+            <div className={classes.tweetMediaContainer} key={id}>
+              <a href={image}>
+                <img alt={"media"} src={image} className={classes.tweetMedia}/>
               </a>
             </div>
-          )}
+          )) }
+
+          {tweet.videos.map((video, id) => (
+            <div className={classes.tweetMediaContainer} key={id}>
+              <a href={video[0].link}>{"Video" + id}</a>
+            </div>
+          )) }
 
         </div>
       </Paper>
