@@ -16,7 +16,8 @@ const useStyles = makeStyles({
   transparent:{
     //border: '1px solid black',
     paddingTop: 20,
-    height: '80vh',
+    height: 'auto',
+    minHeight: '80vh',
     width: '100%',
     borderRadius: 20,
     backgroundColor: 'rgba(197, 243, 241, 0.12)'
@@ -83,7 +84,7 @@ function Main() {
         <Typography  className={classes.title}>
           Say hi 👋  to Thread Ripper botnet for twitter!
           <br/><br/>
-          Don't know how to use 🤔? Just tag "@super_raptor911 save" to save a twitter thread 🐦.
+          Don't know how to use 🤔? Just tag "@threadRipperBot save" to save a twitter thread 🐦.
           <br/>
           <br/>
           Login with twitter to view/download your saved threads
@@ -96,7 +97,7 @@ function Main() {
           consumerKey={"DfeZW6qR4AYtjKdOhlBLxoSzO"}
           consumerSecret={"hk9CSrj5eNZdWk4EuE524h5UiRwfYCsONSlrRcTF0Ew2SNL7tr"}
           className={classes.login}
-          buttonTheme={"dark"}
+          buttonTheme={"light"}
         />   
       </div>
       </div>
