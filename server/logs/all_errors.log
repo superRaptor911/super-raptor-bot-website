@@ -480,3 +480,25 @@ Stack trace:
 [22-May-2021 20:41:05 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 138
 [22-May-2021 20:41:11 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 138
 [22-May-2021 20:41:36 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 138
+[22-May-2021 20:55:01 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 139
+[22-May-2021 20:57:01 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 139
+[22-May-2021 20:57:41 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 139
+[22-May-2021 20:57:47 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 139
+[22-May-2021 20:58:02 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 139
+[22-May-2021 21:45:12 Asia/Calcutta] PHP Notice:  Undefined index: botName in /home/raptor/program/server/twitterbot/server/bot.php on line 97
+[22-May-2021 21:48:17 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 139
+[22-May-2021 21:54:20 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 139
+[22-May-2021 22:16:40 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 139
+[22-May-2021 22:17:01 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/bot.php on line 158
+[22-May-2021 22:18:08 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/bot.php on line 158
+[22-May-2021 22:18:20 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/bot.php on line 158
+[22-May-2021 22:18:44 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/bot.php on line 158
+[22-May-2021 22:23:50 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/bot.php on line 158
+[22-May-2021 22:29:46 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 139
+[22-May-2021 22:30:34 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/bot.php on line 158
+[22-May-2021 22:54:09 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 171
+[22-May-2021 22:54:35 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 171
+[22-May-2021 22:54:50 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 171
+[22-May-2021 22:54:56 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 171
+[22-May-2021 22:55:14 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 171
+[22-May-2021 22:55:21 Asia/Calcutta] PHP Notice:  Trying to access array offset on value of type null in /home/raptor/program/server/twitterbot/server/threads.php on line 171

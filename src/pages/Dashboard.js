@@ -117,7 +117,7 @@ const useStyles = makeStyles({
   }
 });
 
-function genThreadList(threads, classes, history) {
+function genThreadList(threads, classes, history, deleteFunc) {
   threads.sort(sortBy("threadID", "desc"))
   return (
     <div>
@@ -128,7 +128,8 @@ function genThreadList(threads, classes, history) {
           className = {classes.deleteButton}
           type = ''
           variant = 'contained'
-          
+
+          onClick= {() => {deleteFunc(thread.threadID)}}
           >
             Delete
           </Button>
@@ -154,8 +155,11 @@ const Dashboard = () => {
     type: 'listThreads',
     name: getCookie("username"),
   }});
+  const [target2, setTarget2] = useState({uri: "", data: ""});
+
   const [currentStatus, setCurrentStatus] = useState("");
   const serverResponse = useFetch(target);
+  const serverResponse2 = useFetch(target2);
 
   const history = useHistory();
 
@@ -163,6 +167,13 @@ const Dashboard = () => {
 
   if (getCookie("username" === "")) {
     history.push("/");
+  }
+
+  const deleteFunc = (threadID) => {
+    setTarget2({uri: `${serverAddress}/threads.php`, data: {
+      type: 'removeThread',
+      threadID: threadID,
+    }})
   }
 
   // Check server response
@@ -177,10 +188,30 @@ const Dashboard = () => {
       }
       else {
         setCurrentStatus("");
-        setThreadList(genThreadList(serverResponse.data.threads, classes, history));
+        setThreadList(genThreadList(serverResponse.data.threads, classes, history, deleteFunc));
       }
     }
   }, [serverResponse.error, serverResponse.data])
+
+  // Check server response
+  useEffect(() => {
+    if (serverResponse2.error.error) {
+      setCurrentStatus(serverResponse2.error.msg);
+      console.log("error deleting")
+    }
+    else if (serverResponse2.data) {
+      if (!serverResponse2.data.result) {
+        setCurrentStatus(serverResponse2.data.err);
+      }
+      else {
+        setCurrentStatus("");
+        setTarget({uri: `${serverAddress}/threads.php`, data: {
+          type: 'listThreads',
+          name: getCookie("username"),
+        }});
+      }
+    }
+  }, [serverResponse2.error, serverResponse2.data])
 
   return (
     <div className={classes.root}>
@@ -190,9 +221,9 @@ const Dashboard = () => {
 
       <Divider/>
       <div className={classes.transparent}>
-      <div className={classes.threadListContainer}>
-        {threadList}
-      </div>
+        <div className={classes.threadListContainer}>
+          {threadList}
+        </div>
       </div>
 
       <Typography variant="button" color="error">

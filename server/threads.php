@@ -41,6 +41,38 @@ function getThread() {
     return $return_val;
 }
 
+function removeThread() {
+    // Return value
+    $return_val = array(
+        'result' => true, // success
+        'err'    => "",   // err msg
+    );
+    if (empty($_POST["threadID"])) {
+        $return_val['result'] = false;
+        $return_val['err'] = "*threadID not set";
+        return $return_val;
+    }
+
+    $threadID = $_POST["threadID"];
+
+    $conn = connectToDB();
+    if (!$conn) {
+        $logger = new Logger();
+        $logger->addLog(__FUNCTION__, "*Connection to database failed.");
+        $return_val['result'] = false;
+        $return_val['err'] = "*Connection to database failed.";
+        return $return_val;
+    }
+    // SQL DB
+    $sql = "DELETE FROM threads WHERE threadID='$threadID'";
+    $result = $conn->query($sql);
+    if (!$result) {
+        $return_val['result'] = false;
+        $return_val['err'] = "Error failed to get, " . $conn->error;
+        return $return_val;
+    }
+    return $return_val;
+}
 
 
 function getThreadList() {
@@ -149,6 +181,10 @@ case 'listThreads':
 
 case 'addThread':
     echo json_encode(addThread());
+    break;
+
+case 'removeThread':
+    echo json_encode(removeThread());
     break;
 
 default:

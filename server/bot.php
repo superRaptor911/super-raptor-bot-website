@@ -104,7 +104,7 @@ function updateBot() {
     }
     $date = date_create();
     $time = date_timestamp_get($date);
-    $sql = "INSERT INTO processPool(botName, lastSeen) VALUES('$botName', $time)";
+    $sql = "INSERT INTO bots(botName, lastSeen) VALUES('$botName', $time)";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;
@@ -112,6 +112,40 @@ function updateBot() {
         return $return_val;
     }
 
+    return $return_val;
+}
+
+
+function getBotCount() {
+    // Return value
+    $return_val = array(
+        'result' => true, // success
+        'err'    => "",   // err msg
+        'count'  => 0
+    );
+
+    $conn = connectToDB();
+    if (!$conn) {
+        $logger = new Logger();
+        $logger->addLog(__FUNCTION__, "*Connection to database failed.");
+        $return_val['result'] = false;
+        $return_val['err'] = "*Connection to database failed.";
+        return $return_val;
+    }
+    $date = date_create();
+    $time = date_timestamp_get($date) - 200;
+    // SQL DB
+    $sql = "SELECT COUNT(*) AS cnt FROM bots WHERE lastSeen > $time";
+    $result = $conn->query($sql);
+    if (!$result) {
+        $return_val['result'] = false;
+        $return_val['err'] = "Error failed to get, " . $conn->error;
+        return $return_val;
+    }
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $return_val['count'] = $row["cnt"];
+    }
     return $return_val;
 }
 
@@ -138,6 +172,10 @@ case 'unlockThread':
 
 case 'ping':
     echo json_encode(updateBot());
+    break;
+
+case 'botCount':
+    echo json_encode(getBotCount());
     break;
 
 default:
