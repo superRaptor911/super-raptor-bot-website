@@ -118,6 +118,7 @@ function addThread() {
     }
 
     $thread = $conn->real_escape_string($thread);
+    $title = $conn->real_escape_string($title);
 
     $sql = "INSERT INTO threads(name, threadID, thread, title) VALUES('$name', '$threadID', '$thread', '$title')";
     $result = $conn->query($sql);
