@@ -137,7 +137,6 @@ const Dashboard = () => {
     else if (serverResponse.data) {
       if (!serverResponse.data.result) {
         setCurrentStatus(serverResponse.data.err);
-        history.push("/");
       }
       else {
         setCurrentStatus("");

@@ -120,6 +120,7 @@ const ViewThread = () => {
   useEffect(() => {
     if (serverResponse.error.error) {
       setCurrentStatus(serverResponse.error.msg);
+      history.push("/");
       console.log("error")
     }
     else if (serverResponse.data) {
