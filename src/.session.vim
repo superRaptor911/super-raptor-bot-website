@@ -19,7 +19,7 @@ badd +31 components/Header.js
 badd +28 components/SideDrawer.js
 argglobal
 %argdel
-edit components/Tweet.js
+edit components/SideDrawer.js
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -29,12 +29,12 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 88 - ((36 * winheight(0) + 21) / 43)
+let s:l = 63 - ((28 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-88
-normal! 036|
+63
+normal! 03|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -48,10 +48,6 @@ const SideDrawer = () => {
       name: "COMMANDS",
       path: "/commands"
     },
-    {
-      name: "GUIDE",
-      path: "/guide"
-    },
   ];
 
   const personal = [
@@ -59,20 +55,12 @@ const SideDrawer = () => {
       name: "DASHBOARD",
       path: "/dashboard"
     },
-    {
-      name: "SETTINGS",
-      path: "/settings"
-    },
   ];
 
   const siteInfoList = [
     {
       name: "ABOUT",
       path: "/about"
-    },
-    {
-      name: "POLICY",
-      path: "/policy"
     },
   ];
 
