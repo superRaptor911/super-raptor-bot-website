@@ -10,7 +10,7 @@ set shortmess=aoO
 badd +11 database.php
 badd +2 logger.php
 badd +6 Config.php
-badd +10 sql.sql
+badd +7 sql.sql
 badd +109 bot.php
 badd +39 threads.php
 argglobal
@@ -25,11 +25,11 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 13 - ((12 * winheight(0) + 21) / 43)
+let s:l = 7 - ((6 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-13
+7
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
