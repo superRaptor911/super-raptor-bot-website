@@ -9,8 +9,6 @@ import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import SideDrawer from "./SideDrawer";
 import {getCookie, setCookie} from "./Utility";
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 

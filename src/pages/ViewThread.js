@@ -4,7 +4,7 @@ import {useHistory, useParams} from "react-router";
 import useFetch from "../components/useFetch";
 import {getCookie, serverAddress, sortBy} from '../components/Utility';
 import Typography from '@material-ui/core/Typography';
-import { Button, makeStyles } from '@material-ui/core'
+import { Button, Divider, makeStyles } from '@material-ui/core'
 // import Button from '@material-ui/core/Button'
 import Tweet from "../components/Tweet";
 import jsPDF from 'jspdf';
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     width: 1000,
   },
   paper: {
+    marginTop: 5,
     padding: 20,
     backgroundColor: 'rgba(197, 243, 241, 0.12)',
     overflowX: 'auto',
@@ -35,7 +36,7 @@ const useStyles = makeStyles({
   },
   title : {
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
     fontSize: 40,
     fontWeight: 'bolder',
     '@media screen and (max-width: 1000px)':{
@@ -178,6 +179,7 @@ const ViewThread = () => {
         save as pdf
       </Button>
       </div>
+      <Divider/>
 
       <Paper className={classes.paper} ref={ref}>
         {tweets}

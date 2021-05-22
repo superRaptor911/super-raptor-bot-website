@@ -51,8 +51,36 @@ const useStyles = makeStyles({
     fontSize: 20,
     width: 150,
     margin: 30,
+    marginLeft: 10,
     //backgroundImage: 'radial-gradient( circle 919px at 1.7% 6.1%,  rgba(41,58,76,1) 0%, rgba(40,171,226,1) 100.2% )',
     backgroundColor: '#001219',
+    '&:hover':{
+      backgroundColor: '#1da1f2',
+      
+      color: '#001219',
+    },
+    '@media screen and (max-width: 1024px)':{
+      fontSize: 17,
+      marginRight: 15
+    },
+    '@media screen and (max-width: 750px)':{
+      fontSize: 15, 
+      marginRight: 5,
+    },
+  },
+
+  deleteButton: {
+    height: 50,
+    borderRadius: 50,
+    fontSize: 20,
+    width: 150,
+    marginTop: 30,
+    marginBottom: 30,
+    marginLeft: 10,
+    color: '#ffffff',
+
+    //backgroundImage: 'radial-gradient( circle 919px at 1.7% 6.1%,  rgba(41,58,76,1) 0%, rgba(40,171,226,1) 100.2% )',
+    backgroundColor: '#fd3535',
     '&:hover':{
       backgroundColor: '#1da1f2',
       color: '#001219',
@@ -96,6 +124,15 @@ function genThreadList(threads, classes, history) {
       {threads.map((thread) => (
         <Paper key={thread.threadID} className={classes.threadItem}>
           <Typography className={classes.threadItemTitle}> {thread.title}</Typography>
+          <Button 
+          className = {classes.deleteButton}
+          type = ''
+          variant = 'contained'
+          
+          >
+            Delete
+          </Button>
+
           <Button
             className= {classes.viewButton}
             type="submit" 
