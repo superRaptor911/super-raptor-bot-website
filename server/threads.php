@@ -5,7 +5,7 @@ include('database.php');
 function getThread() {
     // Return value
     $return_val = array(
-        'result' => true, // success
+        'result' => false, // success
         'err'    => "",   // err msg
         'thread'  => array()
     );
@@ -33,8 +33,10 @@ function getThread() {
         $return_val['err'] = "Error failed to get, " . $conn->error;
         return $return_val;
     }
+
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
+        $return_val['result'] = true;
         $row["thread"] = htmlspecialchars_decode($row['thread'], ENT_QUOTES);
         $return_val['thread'] = $row;
     }
@@ -71,6 +73,9 @@ function removeThread() {
         $return_val['err'] = "Error failed to get, " . $conn->error;
         return $return_val;
     }
+    // Lock it
+    $sql = "INSERT INTO processPool(threadID, time) VALUES('$threadID', 0)";
+    $result = $conn->query($sql);
     return $return_val;
 }
 
