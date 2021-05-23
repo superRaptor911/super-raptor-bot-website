@@ -11,6 +11,7 @@ import SideDrawer from "./SideDrawer";
 import {getCookie, setCookie} from "./Utility";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import logo from './images/logo.png';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -52,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
   },
   emptyDiv: {
     margin: 100,
+  },
+  logo:{
+    width: 100,
+    height: 50,
   }
 }));
 
@@ -84,15 +89,19 @@ const Header = () => {
         <Toolbar>
           <SideDrawer/>
           <Button onClick={() => history.push('/')}>
-            <Avatar 
+            {/*<Avatar 
               className={classes.medium}
               alt="Twitter"
               src={"https://cdn0.iconfinder.com/data/icons/user-44/512/Bot-512.png"}
-            />
+            /> */}
+            <img className={classes.logo}
+            src= {logo}
+            alt = 'logo'/>
+
           </Button>
-          <Typography variant="h6" className={classes.title}>
+          {/*<Typography variant="h6" className={classes.title}>
             ThreadRipper
-          </Typography>
+          </Typography>*/}
   
           <div className={classes.usernamesec}>
 

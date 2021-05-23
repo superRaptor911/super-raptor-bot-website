@@ -17,17 +17,38 @@ const useStyles = makeStyles({
     alignItems: 'center'
   },
   paper: {
+    margin: 20,
     padding: 20,
+    backgroundColor: '#eff7f6',
+    borderRadius: 20,
+    //minHeight: '50vh',
   },
-  title : {
-    textAlign: 'center',
-    marginBottom: 20,
-    fontSize: 40,
-    fontWeight: 'bolder'
+  text : {
+    //textAlign: 'left',
+    fontSize: 32.0,
+    fontWeight: 400,
+    '@media screen and (max-width: 1100px)':{
+        fontSize: 27.0,
+    },
+    '@media screen and (max-width: 840px)':{
+        fontSize: 20.0
+    },
   },
-  text: {
-    textAlign: 'center',
-  }
+  transparent:{
+    //border: '1px solid black',
+    marginTop: 10,
+    paddingTop: 20,
+    height: 'auto',
+    minHeight: '80vh',
+    width: '100%',
+    borderRadius: 20,
+    backgroundColor: 'rgba(197, 243, 241, 0.12)'
+  },
+  title:{
+      textAlign: 'center',
+      fontSize: 40,
+      fontWeight: 'bold',
+  },
 });
 
 const Bots = () => {
@@ -66,7 +87,7 @@ const Bots = () => {
         BOTS ONLINE
       </Typography>
       <Divider/>
-
+      <div className = {classes.transparent}>
       <Paper className={classes.paper}>
         <Typography className={classes.text} variant="h4">
           Currently {botCount} bots online
@@ -76,6 +97,7 @@ const Bots = () => {
       <Typography variant="button" color="error">
         {currentStatus}
       </Typography>
+      </div>
     </div>
   );
 }
