@@ -139,6 +139,11 @@ const ViewThread = () => {
     else if (serverResponse.data) {
       if (!serverResponse.data.result) {
         setCurrentStatus(serverResponse.data.err);
+        setTweets((
+          <h1>
+            Error Thread not found
+          </h1>
+        ))
       }
       else {
         setCurrentStatus("");
