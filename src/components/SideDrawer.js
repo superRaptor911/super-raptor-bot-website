@@ -52,6 +52,10 @@ const SideDrawer = () => {
       name: "BOTS",
       path: "/bots"
     },
+    {
+      name: "HOW TO USE",
+      path: "how_to_use"
+    }
   ];
 
   const personal = [

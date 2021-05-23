@@ -6,6 +6,7 @@ import {getCookie, serverAddress, sortBy} from '../components/Utility';
 import Typography from '@material-ui/core/Typography';
 import { Divider, makeStyles } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import oops from '../components/images/oops.png';
 import { ArrowLeft } from "@material-ui/icons";
 
 const useStyles = makeStyles({
@@ -108,12 +109,32 @@ const useStyles = makeStyles({
       padding: 6, 
     },
   },
-  threadItemTitle: {
-    marginLeft: 5,
-    marginRight: 5,
-    width: '80%',
-    fontSize: 20,
-    fontWeight: 'bold'
+  threadItem: {
+    margin: 20,
+    padding: 20,
+    backgroundColor: '#eff7f6',
+    borderRadius: 20,
+    minHeight: '50vh',
+  },
+  threadText : {
+    textAlign: 'left',
+    fontSize: 32.0,
+    fontWeight: 400,
+    '@media screen and (max-width: 1100px)':{
+        fontSize: 27.0,
+    },
+    '@media screen and (max-width: 840px)':{
+        fontSize: 20.0
+    },
+  },
+  image:{
+    maxHeight: 250,
+    maxWidth: 250,
+    marginTop: '5%',
+  },
+  imgsec:{
+    textAlign: 'center',
+    
   }
 });
 
@@ -152,9 +173,15 @@ function genThreadList(threads, classes, history, deleteFunc) {
 
   return (
     <Paper className={classes.threadItem}>
-      <Typography variant="h4" className={classes.title}>
+      <Typography  className={classes.threadText}>
         Oops! You don't have any saved threads, use @threadRipperBot save
       </Typography>
+      <div className={classes.imgsec}>
+      <img
+      className={classes.image}
+      src = {oops}
+      />
+      </div>
     </Paper>
   )
 }

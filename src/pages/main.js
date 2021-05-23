@@ -5,6 +5,7 @@ import TwitterLogin from "react-twitter-login";
 import {getCookie, setCookie} from '../components/Utility';
 import {useState} from 'react';
 import {useHistory} from 'react-router';
+import { BlockRounded } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   root: {
@@ -46,7 +47,12 @@ const useStyles = makeStyles({
     marginRight: 'auto',
     marginTop: 20,
     
-  }
+  },
+  links:{
+    textDecoration: 'none',
+    color: ' #1da1f2',
+    fontWeight: 'bold',
+},
 
 });
 
@@ -84,7 +90,8 @@ function Main() {
         <Typography  className={classes.title}>
           Say hi 👋  to Thread Ripper botnet for twitter!
           <br/><br/>
-          Don't know how to use 🤔? Just tag "@threadRipperBot save" to save a twitter thread 🐦.
+          Don't know how to use 🤔? Just tag "@threadRipperBot save" to save a twitter thread 🐦.<br/>
+          <a className = {classes.links} href ="./how_to_use"><b>CLICK HERE</b></a> to know more.
           <br/>
           <br/>
           Login with twitter to view/download your saved threads
