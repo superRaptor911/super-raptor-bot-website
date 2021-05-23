@@ -1,6 +1,6 @@
 -- RUN THESE COMMANDS IN UR SQL DB
 create database twitterBot;
-GRANT ALL PRIVILEGES ON twitterBot.* TO 'vyshnav'@'localhost';
+GRANT ALL PRIVILEGES ON twitterBot.* TO 'raptor'@'localhost';
 FLUSH PRIVILEGES;
 USE twitterBot;
 -- TABLES
