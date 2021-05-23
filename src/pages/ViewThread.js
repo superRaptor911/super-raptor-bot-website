@@ -9,8 +9,9 @@ import { Button, Divider, makeStyles } from '@material-ui/core'
 import Tweet from "../components/Tweet";
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import Modal from '@material-ui/core/Modal';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 40,
     margin: 'auto',
@@ -78,7 +79,17 @@ const useStyles = makeStyles({
       color: '#001219',
     },
   },
-});
+  popup: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 200,
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  }
+}));
 
 function genTweets(tweet, classes) {
   return (
@@ -110,6 +121,7 @@ const ViewThread = () => {
   }});
   const [currentStatus, setCurrentStatus] = useState("");
   const [dummy, setDummy] = useState();
+  const [showPopup, setShowPopup] = useState(false);
   const serverResponse = useFetch(target);
 
   const history = useHistory();
@@ -137,6 +149,7 @@ const ViewThread = () => {
 
   // Function to save pdf
   const convertToPdf = () => {
+    setShowPopup(true);
     // For mobile
     ref.current.style.width = ref.current.scrollWidth + "px";
     html2canvas(ref.current, {letterRendering: 1, useCORS : true, scrollY: -window.scrollY, scrollX: -window.scrollX ,scale: 2, 
@@ -164,16 +177,37 @@ const ViewThread = () => {
         heightLeft -= pdf.internal.pageSize.getHeight();
       }
 
+      setShowPopup(false);
       // pdf.addImage(imgData, 'PNG', 0, 0);
       pdf.save("download.pdf"); 
     });
   }
+
+  const popupBody = (
+    <div  className={classes.popup}>
+      <Typography variant="h4" className={classes.title}>
+        Generating PDF!!
+      </Typography>
+      <Typography variant="h5" className={classes.title} color={"error"}>
+       Hold on, it may take a while
+      </Typography>
+    </div>
+  );
+
 
   return (
     <div className={classes.root}>
       <Typography  className={classes.title}>
         THREAD
       </Typography>
+
+      <Modal
+        open={showPopup}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        {popupBody}
+      </Modal>
 
       <div className = {classes.btn}>
       <Button onClick={convertToPdf} className= {classes.pdfButton}>

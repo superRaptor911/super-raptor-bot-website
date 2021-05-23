@@ -119,34 +119,44 @@ const useStyles = makeStyles({
 
 function genThreadList(threads, classes, history, deleteFunc) {
   threads.sort(sortBy("threadID", "desc"))
+  if (threads.length > 0) {
+    return (
+      <div>
+        {threads.map((thread) => (
+          <Paper key={thread.threadID} className={classes.threadItem}>
+            <Typography className={classes.threadItemTitle}> {thread.title}</Typography>
+            <Button 
+              className = {classes.deleteButton}
+              type = ''
+              variant = 'contained'
+
+              onClick= {() => {deleteFunc(thread.threadID)}}
+            >
+              Delete
+            </Button>
+
+            <Button
+              className= {classes.viewButton}
+              type="submit" 
+              color="primary" 
+              variant="contained"
+              onClick= {() => {history.push("/thread/" + thread.threadID)}}
+            >
+              View
+            </Button>
+          </Paper>
+        ))}
+      </div>
+    );
+  }
+
   return (
-    <div>
-      {threads.map((thread) => (
-        <Paper key={thread.threadID} className={classes.threadItem}>
-          <Typography className={classes.threadItemTitle}> {thread.title}</Typography>
-          <Button 
-          className = {classes.deleteButton}
-          type = ''
-          variant = 'contained'
-
-          onClick= {() => {deleteFunc(thread.threadID)}}
-          >
-            Delete
-          </Button>
-
-          <Button
-            className= {classes.viewButton}
-            type="submit" 
-            color="primary" 
-            variant="contained"
-            onClick= {() => {history.push("/thread/" + thread.threadID)}}
-          >
-            View
-          </Button>
-        </Paper>
-      ))}
-    </div>
-  );
+    <Paper className={classes.threadItem}>
+      <Typography variant="h4" className={classes.title}>
+        Oops! You don't have any saved threads, use @threadRipperBot save
+      </Typography>
+    </Paper>
+  )
 }
 
 const Dashboard = () => {
