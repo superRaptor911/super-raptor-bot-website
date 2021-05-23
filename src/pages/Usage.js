@@ -5,6 +5,7 @@ import t1 from '../components/images/steps/t1.png';
 import t2 from '../components/images/steps/t2.png';
 import t3 from '../components/images/steps/t3.png';
 import t4 from '../components/images/steps/t4.png';
+import t7 from '../components/images/steps/t7.png';
 
 
 
@@ -104,7 +105,7 @@ return (
         alt ='image'/>
 
     <Typography className = {classes.text}>
-    step 4.) Login to threadripper.ga
+    step 4.) Login to <a className = {classes.links} href = "./">twitterthreadripper.ga</a>
         </Typography>
 
     <img
@@ -113,9 +114,13 @@ return (
         alt ='image'/>
 
     <Typography className = {classes.text}>
-    step5.) View your saved threads 
+    step5.) View your saved threads and save in pdf format.
         </Typography>
         
+        <img
+        className = {classes.imgGuide} 
+        src = {t7}
+        alt ='image'/>
 
         </Paper>
         </div>
