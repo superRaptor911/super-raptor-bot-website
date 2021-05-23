@@ -11,11 +11,11 @@ badd +23 database.php
 badd +2 logger.php
 badd +6 Config.php
 badd +7 sql.sql
-badd +109 bot.php
-badd +121 threads.php
+badd +178 bot.php
+badd +63 threads.php
 argglobal
 %argdel
-edit threads.php
+edit sql.sql
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -25,12 +25,12 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:l = 127 - ((28 * winheight(0) + 21) / 43)
+let s:l = 6 - ((5 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-127
-normal! 09|
+6
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

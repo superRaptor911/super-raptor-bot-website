@@ -6,7 +6,7 @@ echo "Generating Files"
 rm -rf build/
 yarn build && 
 cp -rv server build/ &&
-cp -rv bot1 build/ &&
+# cp -rv bot1 build/ &&
 cp .htaccess build/ &&
 echo "Site generated in build/" &&
 

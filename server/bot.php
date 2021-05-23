@@ -104,7 +104,7 @@ function updateBot() {
     }
     $date = date_create();
     $time = date_timestamp_get($date);
-    $sql = "INSERT INTO bots(botName, lastSeen) VALUES('$botName', $time)";
+    $sql = "INSERT INTO bots(botName, lastSeen) VALUES('$botName', $time) ON DUPLICATE KEY UPDATE lastSeen=$time";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;
