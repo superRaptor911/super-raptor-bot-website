@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: 5,
     padding: 20,
-    backgroundColor: 'rgba(197, 243, 241, 0.12)',
+   // backgroundColor: 'rgba(197, 243, 241, 0.12)',
+    backgroundColor: '#1da1f2',
     overflowX: 'auto',
     borderRadius: 20,
     display: 'flex',

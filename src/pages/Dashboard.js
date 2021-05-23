@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     height: 100,
     width: 'auto',
     margin: 15,
-    borderRadius: 25,
+    borderRadius: 20,
     '@media screen and (max-width: 1024px)':{
       margin: 10,
       padding: 6, 
@@ -101,6 +101,7 @@ const useStyles = makeStyles({
     //border: '1px solid black',
     padding: 20,
     margin: 10,
+    //minHeight: '60vh',
     height: 'auto',
     width: 'auto',
     borderRadius: 20,
@@ -109,7 +110,8 @@ const useStyles = makeStyles({
       padding: 6, 
     },
   },
-  threadItem: {
+ 
+  thread_Item: {
     margin: 20,
     padding: 20,
     backgroundColor: '#eff7f6',
@@ -172,7 +174,7 @@ function genThreadList(threads, classes, history, deleteFunc) {
   }
 
   return (
-    <Paper className={classes.threadItem}>
+    <Paper className={classes.thread_Item}>
       <Typography  className={classes.threadText}>
         Oops! You don't have any saved threads, use @threadRipperBot save
       </Typography>
