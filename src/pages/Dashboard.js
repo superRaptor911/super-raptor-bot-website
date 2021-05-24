@@ -46,6 +46,16 @@ const useStyles = makeStyles({
       padding: 4, 
     },
   },
+
+  buttons: {
+    display: 'flex',
+    flexDirection: 'row',
+    //marginLeft: 500
+  },
+  threadItemTitle:{
+    //marginRight: '45%',
+    width: '60%'
+  },
   viewButton: {
     height: 50,
     borderRadius: 50,
@@ -62,11 +72,15 @@ const useStyles = makeStyles({
     },
     '@media screen and (max-width: 1024px)':{
       fontSize: 17,
-      marginRight: 15
+      marginRight: 15,
+      width: 120,
+      height: 45,
     },
     '@media screen and (max-width: 750px)':{
       fontSize: 15, 
       marginRight: 5,
+      width: 100,
+      height: 40,
     },
   },
 
@@ -88,9 +102,13 @@ const useStyles = makeStyles({
     },
     '@media screen and (max-width: 1024px)':{
       fontSize: 17,
+      width: 120,
+      height: 45,
     },
     '@media screen and (max-width: 750px)':{
-      fontSize: 15, 
+      fontSize: 15,
+      width: 100,
+      height: 40, 
     },
   },
   
@@ -148,6 +166,8 @@ function genThreadList(threads, classes, history, deleteFunc) {
         {threads.map((thread) => (
           <Paper key={thread.threadID} className={classes.threadItem}>
             <Typography className={classes.threadItemTitle}> {thread.title}</Typography>
+            
+            <div className = {classes.buttons}>
             <Button 
               className = {classes.deleteButton}
               type = ''
@@ -167,6 +187,8 @@ function genThreadList(threads, classes, history, deleteFunc) {
             >
               View
             </Button>
+
+            </div>
           </Paper>
         ))}
       </div>
