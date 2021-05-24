@@ -95,7 +95,7 @@ const Bots = () => {
 
   const [currentStatus, setCurrentStatus] = useState("");
   const [botsTable, setBotsTable] = useState(genBotStatusTable([]));
-  const [timeoutCounter, setTimeoutCounter] = useState();
+  const [timeoutCounter, setTimeoutCounter] = useState(0);
   const serverResponse = useFetch(target);
 
 
