@@ -82,7 +82,7 @@ const useStyles = makeStyles({
       width: 100,
       height: 40,
     },
-    '@media screen and (max-width: 355px)':{
+    '@media screen and (max-width: 450px)':{
       fontSize: 12, 
       marginRight: 5,
       width: 77,
@@ -116,7 +116,7 @@ const useStyles = makeStyles({
       width: 100,
       height: 40, 
     },
-    '@media screen and (max-width: 355px)':{
+    '@media screen and (max-width: 450px)':{
       fontSize: 12, 
       marginRight: 5,
       width: 77,
