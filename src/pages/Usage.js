@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { Divider, makeStyles } from '@material-ui/core';
 import t1 from '../components/images/steps/t1.png';
 import t2 from '../components/images/steps/t2.png';
-import t3 from '../components/images/steps/t3.png';
+import t3 from '../components/images/steps/t3.jpeg';
 import t4 from '../components/images/steps/t4.png';
 import t7 from '../components/images/steps/t7.png';
 
