@@ -1,12 +1,16 @@
 import {useEffect , useState} from "react";
 import Paper from '@material-ui/core/Paper';
-import {useHistory} from "react-router";
 import useFetch from "../components/useFetch";
-import {getCookie, serverAddress, sortBy} from '../components/Utility';
+import {serverAddress} from '../components/Utility';
 import Typography from '@material-ui/core/Typography';
 import { Divider, makeStyles } from '@material-ui/core'
-import Button from '@material-ui/core/Button'
 import { ArrowLeft } from "@material-ui/icons";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 const useStyles = makeStyles({
   root: {
@@ -51,18 +55,60 @@ const useStyles = makeStyles({
   },
 });
 
+function genBotStatusTable(status) {
+  return (
+    <TableContainer component={Paper}>
+      <Table  aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>BOT ID</TableCell>
+            <TableCell align="center">STATUS</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {status.map((row, id) => (
+            <TableRow key={id}>
+              <TableCell component="th" scope="row">
+                <Typography>
+                  {row.botName}
+                </Typography>
+              </TableCell>
+
+              <TableCell align="center">
+                <Typography>
+                  {row.status}
+                </Typography>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
+
 const Bots = () => {
   const classes = useStyles();
   const [target, setTarget] = useState({uri: `${serverAddress}/bot.php`, data: {
-    type: 'botCount',
+    type: 'status',
   }});
 
   const [currentStatus, setCurrentStatus] = useState("");
-  const [botCount, setBotCount] = useState(0);
+  const [botsTable, setBotsTable] = useState(genBotStatusTable([]));
+  const [timeoutCounter, setTimeoutCounter] = useState();
   const serverResponse = useFetch(target);
 
 
   const [threadList, setThreadList] = useState();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('Refreshing data');
+      setTarget({uri: `${serverAddress}/bot.php`, data: { type: 'status'}})
+      setTimeoutCounter(timeoutCounter + 1);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, [timeoutCounter]);
 
   // Check server response
   useEffect(() => {
@@ -76,7 +122,7 @@ const Bots = () => {
       }
       else {
         setCurrentStatus("");
-        setBotCount(serverResponse.data.count);
+        setBotsTable(genBotStatusTable(serverResponse.data.bots));
       }
     }
   }, [serverResponse.error, serverResponse.data])
@@ -88,15 +134,13 @@ const Bots = () => {
       </Typography>
       <Divider/>
       <div className = {classes.transparent}>
-      <Paper className={classes.paper}>
-        <Typography className={classes.text} variant="h4">
-          Currently {botCount} bots online
-        </Typography>
-      </Paper>
+        <Paper className={classes.paper}>
+          {botsTable}
+        </Paper>
 
-      <Typography variant="button" color="error">
-        {currentStatus}
-      </Typography>
+        <Typography variant="button" color="error">
+          {currentStatus}
+        </Typography>
       </div>
     </div>
   );
