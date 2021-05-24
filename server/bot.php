@@ -95,6 +95,7 @@ function updateBot() {
     );
 
     $botName = $_POST["botName"];
+    $status = $_POST["status"];
 
     $conn = connectToDB();
     if (!$conn) {
@@ -104,7 +105,7 @@ function updateBot() {
     }
     $date = date_create();
     $time = date_timestamp_get($date);
-    $sql = "INSERT INTO bots(botName, lastSeen) VALUES('$botName', $time) ON DUPLICATE KEY UPDATE lastSeen=$time";
+    $sql = "INSERT INTO bots(botName, lastSeen, status) VALUES('$botName', $time, '$status') ON DUPLICATE KEY UPDATE lastSeen=$time , status = '$status'";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;
@@ -116,12 +117,12 @@ function updateBot() {
 }
 
 
-function getBotCount() {
+function getBotStatus() {
     // Return value
     $return_val = array(
         'result' => true, // success
         'err'    => "",   // err msg
-        'count'  => 0
+        'bots'  => array()
     );
 
     $conn = connectToDB();
@@ -135,7 +136,7 @@ function getBotCount() {
     $date = date_create();
     $time = date_timestamp_get($date) - 200;
     // SQL DB
-    $sql = "SELECT COUNT(*) AS cnt FROM bots WHERE lastSeen > $time";
+    $sql = "SELECT * FROM bots WHERE lastSeen > $time";
     $result = $conn->query($sql);
     if (!$result) {
         $return_val['result'] = false;
@@ -143,8 +144,9 @@ function getBotCount() {
         return $return_val;
     }
     if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $return_val['count'] = $row["cnt"];
+        while ($row = $result->fetch_assoc()) {
+           array_push($return_val['bots'], $row);
+        }
     }
     return $return_val;
 }
@@ -174,8 +176,8 @@ case 'ping':
     echo json_encode(updateBot());
     break;
 
-case 'botCount':
-    echo json_encode(getBotCount());
+case 'status':
+    echo json_encode(getBotStatus());
     break;
 
 default:

@@ -2,11 +2,11 @@
 
 
 function getSqlUsername() {
-    return "vyshnav";
+    return "raptor";
 } 
 
 function getSQlPassword() {
-    return "vyshnavks";
+    return "intel8086";
 }
 
 ?>
